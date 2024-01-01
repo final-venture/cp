@@ -1,3 +1,3 @@
 # cp
 
-Competitive Programming
+Repo for Competitive Programming Code
