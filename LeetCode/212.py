@@ -5,32 +5,35 @@ class TrieNode:
 
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
-        def helper(r, c, node, chars="", visited=set()):
+        def helper(r, c, node, chars=""):
+            if (r, c) in self.seen:
+                return
+
             if board[r][c] in node.children:
                 char = board[r][c]
                 nxt = node.children[char]
-                
-                if (r, c) not in visited:
-                    if r > 0 and helper(r - 1, c, nxt, chars+char, visited):
-                        return
-                    if r < self.rows - 1 and helper(r + 1, c, nxt, chars+char, visited):
-                        return
-                    if c > 0 and helper(r, c - 1, nxt, chars+char, visited):
-                        return
-                    if c < self.cols - 1 and helper(r, c + 1, nxt, chars+char, visited):
-                        return
+                self.seen.add((r, c))
 
-                    if nxt.isWord:
-                        self.res.add(chars+char)
-                        return True
-                
-                visited.add((r, c))
+                if r > 0:
+                    helper(r - 1, c, nxt, chars+char)
+                if r < self.rows - 1:
+                    helper(r + 1, c, nxt, chars+char)
+                if c > 0:
+                    helper(r, c - 1, nxt, chars+char)
+                if c < self.cols - 1:
+                    helper(r, c + 1, nxt, chars+char)
+
+                if nxt.isWord:
+                    self.res.add(chars+char)
+                self.seen.remove((r, c))
+
             return
 
         self.root = TrieNode()
         self.res = set()
         self.rows = len(board)
         self.cols = len(board[0])
+        self.seen = set()
 
         for word in words:
             self.curr = self.root
