@@ -25,7 +25,6 @@ class WordDictionary:
                         if helper(i + 1, v):
                             return True
                     return False
-
                 else:
                     if word[i] not in curr.children:
                         return False
