@@ -18,3 +18,19 @@ class Solution:
         
         dfs(0, 0)
         return self.res
+
+# DP
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        t = sum(nums)
+        if t % 2:
+            return False
+
+        dp = set()
+
+        for i in range(len(nums)):
+            for n in dp.copy():
+                dp.add(nums[i]+n)
+            dp.add(nums[i])
+
+        return True if t // 2 in dp else False
