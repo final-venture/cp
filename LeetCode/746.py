@@ -18,7 +18,7 @@ class Solution:
 
         return dfs(length)
 
-# Optimal
+# Model
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
         

@@ -24,7 +24,7 @@ class Solution:
 
         return self.res
 
-# Optimal
+# Model
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         preq = defaultdict(list)

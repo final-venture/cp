@@ -21,7 +21,7 @@ class Solution:
                     grid[nr][nc] = count + 1
                     q.append([nr, nc, count+1])
 
-# Optimal from HTH sajj
+# Model from HTH sajj
 class Solution:
     def islandsAndTreasure(self, grid: List[List[int]]) -> None:
         inf = 2147483647

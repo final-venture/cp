@@ -21,7 +21,7 @@ class Solution:
 
         return longest
         
-# Optimal
+# Model
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         if len(s) < 2:

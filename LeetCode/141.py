@@ -17,7 +17,7 @@ class Solution:
             seen[curr] = True
             curr = curr.next
 
-# OPTIMAL - Floyd's Tortoise and Hare Algorithm
+# Model - Floyd's Tortoise and Hare Algorithm
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         slow = fast = head

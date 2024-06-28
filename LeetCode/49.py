@@ -12,7 +12,7 @@ class Solution:
 
         return output
     
-# Optimal
+# Model
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         anagram_dict = defaultdict(list)

@@ -6,7 +6,7 @@ class Solution:
                     if j != i and nums[j] + nums[i] == target:
                         return [j, i]
                     
-# Optimal
+# Model
 class Solution:
     def twoSum(self, nums: list[int], target: int) -> list[int]:
         hash_table = {}

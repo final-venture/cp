@@ -13,7 +13,7 @@ class Solution:
         else:
             return False
         
-# Optimal
+# Model
 class Solution(object):
     def isAnagram(self, s, t):
         if len(s) != len(t):
