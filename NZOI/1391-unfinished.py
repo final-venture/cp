@@ -1,39 +1,29 @@
-A, B, K = map(int, input().split())
-def gcd(a, b):
-    while b:
-        a, b = b, a % b
-    return a
+AA, BB, K = map(int, input().split())
+B = max(AA, BB)
+A = min(AA, BB)
 
-def lcm(a, b):
-    return abs(a * b) // gcd(a, b) 
+best_qty = float("inf")
+best_rmn = float("inf")
 
-lcm = lcm(A, B)
-small = min(A, B)
-big = max(A, B)
+for i in range(K):
+    if A * i >= K:
+        rmn = A * i - K
+        if rmn < best_rmn or rmn == best_rmn and i < best_qty:
+            best_rmn = rmn
+            best_qty = i
+    else:
+        left = K - A * i
+        b_low = left // B
+        b_high = b_low + 1
 
-r = K
-u_big = u_small = u_lcm = 0
+        if left - b_low * B <= b_high * B - left:
+            best_b = b_low
+        else:
+            best_b = b_high
+        
+        rmn = abs(left - best_b * B)
+        if rmn < best_rmn or rmn == best_rmn and i + best_b < best_qty:
+            best_rmn = rmn
+            best_qty = i + best_b
 
-q_lcm = lcm * (r // lcm)
-r -= q_lcm
-u_lcm = q_lcm // big
-
-if r % small == 0 and r % big != 0:
-    q_small = small * (r // small)
-    r -= q_small
-    u_small = q_small // small
-else:
-    q_big = big * (r // big)
-    r -= q_big
-    u_big = q_big // big
-
-    q_small = small * (r // small)
-    r -= q_small
-    u_small = q_small // small
-
-u_total = u_big + u_small + u_lcm
-
-if r <= small / 2 or r == 0:
-    print(f"{r} {u_total}")
-else:
-    print(f"{abs(r-small)} {u_total+1}")
+print(best_rmn, best_qty)
