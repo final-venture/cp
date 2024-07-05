@@ -1,0 +1,1 @@
+{"name":"Local: 1377","url":"c:\\Users\\23856\\Desktop\\cp\\nzoi\\1377.py","tests":[{"id":1720079417042,"input":"5\n2 3 6 8 10\n1 3 8 9 11","output":"7"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\23856\\Desktop\\cp\\nzoi\\1377.py","group":"local","local":true}
