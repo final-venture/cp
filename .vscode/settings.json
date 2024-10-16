@@ -1,7 +1,9 @@
 {
-    "python.analysis.typeCheckingMode": "basic",
-    "python.analysis.autoImportCompletions": true,
-    "files.associations": {
-        "format": "cpp"
-    }
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
+  "files.associations": {
+    "format": "cpp",
+    "queue": "cpp",
+    "stack": "cpp"
+  }
 }
