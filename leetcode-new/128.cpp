@@ -3,24 +3,20 @@ class Solution
 public:
     int longestConsecutive(vector<int> &nums)
     {
-        unordered_set<int> numSet(nums.begin(), nums.end());
         int longest = 0;
-
+        set<int> numSet(nums.begin(), nums.end());
         for (int num : nums)
         {
-            if (numSet.find(num - 1) == numSet.end())
+            int curr = 0;
+            if (numSet.find(num + 1) == numSet.end())
             {
-                int length = 1;
-
-                while (numSet.find(num + length) != numSet.end())
+                while (numSet.find(num--) != numSet.end())
                 {
-                    length++;
+                    curr++;
                 }
-
-                longest = max(longest, length);
+                longest = max(longest, curr);
             }
         }
-
         return longest;
     }
 };

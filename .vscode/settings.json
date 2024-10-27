@@ -4,6 +4,7 @@
   "files.associations": {
     "format": "cpp",
     "queue": "cpp",
-    "stack": "cpp"
+    "stack": "cpp",
+    "xstring": "cpp"
   }
 }
