@@ -1,14 +1,4 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
+// O(n^2), O(n^2)
 class Solution
 {
 public:
@@ -33,6 +23,35 @@ public:
 
         node->left = dfs(dq, leftio);
         node->right = dfs(dq, rightio);
+        return node;
+    }
+};
+
+// O(n), O(n)
+class Solution
+{
+private:
+    unordered_map<int, int> n2i;
+    int poi = 0;
+
+public:
+    TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder)
+    {
+        for (int i = 0; i < inorder.size(); i++)
+        {
+            n2i[inorder[i]] = i;
+        }
+        return build(preorder, 0, inorder.size() - 1);
+    }
+    TreeNode *build(vector<int> &preorder, int l, int r)
+    {
+        if (l > r)
+            return nullptr;
+        int nodeval = preorder[poi++];
+        int ioi = n2i[nodeval];
+        TreeNode *node = new TreeNode(nodeval);
+        node->left = build(preorder, l, ioi - 1);
+        node->right = build(preorder, ioi + 1, r);
         return node;
     }
 };
