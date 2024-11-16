@@ -1,8 +1,7 @@
 YES
-2
+1
 k 2
-q 3
-NO
 YES
 1
-j 3
+q 99
+NO
