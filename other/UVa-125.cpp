@@ -35,21 +35,11 @@ bool solve()
         adjl[x].pb(y);
     }
     vector<vector<int>> adj(qst + 1, vector<int>(qst + 1, 0));
-    for (auto& [from, neis] : adjl)
+    for (auto& x : adjl)
     {
-        for (int nei : neis)
+        for (int nei : x.second)
         {
-            ++adj[from][nei];
-        }
-    }
-    for (int via = 1; via < qst + 1; ++via)
-    {
-        for (int i = 0; i < qst + 1; ++i)
-        {
-            for (int j = 0; j < qst + 1; ++j)
-            {
-                adj[i][j] = adj[i][j] + adj[i][via] * adj[via][j];
-            }
+            ++adj[x.first][nei];
         }
     }
 
@@ -66,9 +56,13 @@ bool solve()
 
     for (int x = 0; x < qst + 1; ++x)
     {
-        if (adj[x][x])
+        if (!adj[x][x]) continue;
+        for (int i = 0; i < qst + 1; ++i)
         {
-
+            for (int j = 0; j < qst + 1; ++j)
+            {
+                if (adj[i][x] && adj[x][j]) adj[i][j] = -1;
+            }
         }
     }
 
@@ -77,7 +71,11 @@ bool solve()
     {
         for (int j = 0; j < qst + 1; ++j)
         {
-            cout << adj[i][j] << ' ';
+            if (j == qst)
+            {
+                cout << adj[i][j];
+            }
+            else cout << adj[i][j] << ' ';
         }
         cout << '\n';
     }
