@@ -1,4 +1,4 @@
-6 3
-cdbcca
-
-output: acbccd
+3
+1
+2
+4
