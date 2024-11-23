@@ -7,6 +7,7 @@ typedef long double ld;
 
 #define all(x) (x).begin(), (x).end()
 #define pb(x) push_back(x)
+#define int ll
 
 void init()
 {
@@ -59,7 +60,7 @@ void solve()
     cout << res;
 }
 
-int main()
+signed main()
 {
     init();
     solve();
