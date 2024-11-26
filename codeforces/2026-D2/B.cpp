@@ -51,12 +51,10 @@ void solve()
 
         for (int i = 0; i < n; ++i)
         {
-            cells.insert(cells.begin() + i, cells[i] - 1);
-            minn = min(minn, maxdiff(cells));
+            ll tmp = cells[i];
             cells.erase(cells.begin() + i);
-            cells.insert(cells.begin() + i + 1, cells[i] + 1);
             minn = min(minn, maxdiff(cells));
-            cells.erase(cells.begin() + i + 1);
+            cells.insert(cells.begin() + i, tmp);
         }
         cout << minn << '\n';
     }
