@@ -21,6 +21,25 @@ void init()
 
 void solve()
 {
+    int n;
+    cin >> n;
+    int a[n];
+    for (int i = 0; i < n; ++i)
+    {
+        cin >> a[i];
+    }
+    int act[n];
+    for (int i = 0; i < n; ++i)
+    {
+        int cnt = i;
+        for (int j = i + 1; j < n; ++j)
+        {
+            if (a[j] > a[i]) ++cnt;
+        }
+        act[i] = cnt;
+    }
+    int res = *min_element(act, act + n);
+    cout << res << '\n';
 }
 
 int main()
