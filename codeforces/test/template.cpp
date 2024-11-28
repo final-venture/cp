@@ -21,6 +21,26 @@ void init()
 
 void solve()
 {
+    int n, m;
+    cin >> n >> m;
+    int a[n];
+    int b[m];
+    for (int i = 0; i < n; ++i)
+    {
+        cin >> a[i];
+    }
+    for (int i = 0; i < m; ++i)
+    {
+        cin >> b[i];
+    }
+    // edge case: pfx[0] bigger than b[0]
+    int pfx[n + 1];
+    pfx[0] = 0;
+    for (int i = 1; i < n + 1; ++i)
+    {
+        pfx[i] = pfx[i - 1] + a[i - 1];
+    }
+
 }
 
 int main()

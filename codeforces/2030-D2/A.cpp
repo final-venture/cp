@@ -8,7 +8,6 @@ typedef long double ld;
 #define all(x) (x).begin(), (x).end()
 #define pb(x) push_back(x)
 #define EPS 1e-9
-#define rep(i, a, b, s) for (int i=(a); (s)>0?i<(b):i>(b); i+=(s))
 
 void init()
 {
@@ -22,6 +21,21 @@ void init()
 
 void solve()
 {
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for (int i = 0; i < n; ++i)
+    {
+        cin >> arr[i];
+    }
+    if (n == 1)
+    {
+        cout << 0 << '\n';
+        return;
+    }
+    swap(*max_element(all(arr)), arr[0]);
+    sort(arr.begin() + 1, arr.end());
+    cout << (arr[0] - arr[1]) * (n - 1) << '\n';
 }
 
 int main()

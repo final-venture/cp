@@ -8,7 +8,7 @@ typedef long double ld;
 #define all(x) (x).begin(), (x).end()
 #define pb(x) push_back(x)
 #define EPS 1e-9
-#define rep(i, a, b, s) for (int i=(a); (s)>0?i<(b):i>(b); i+=(s))
+#define int ll
 
 void init()
 {
@@ -22,9 +22,30 @@ void init()
 
 void solve()
 {
+    int n, k;
+    cin >> n >> k;
+    if (k == 1 || k > n)
+    {
+        cout << n << '\n';
+        return;
+    }
+    int res = 0;
+    res += n % k;
+    n -= (n % k);
+    while (n)
+    {
+        int cand = k;
+        while (cand * k <= n)
+        {
+            cand = cand * k;
+        }
+        ++res;
+        n -= cand;
+    }
+    cout << res << '\n';
 }
 
-int main()
+signed main()
 {
     init();
     int t;
