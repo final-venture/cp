@@ -23,7 +23,7 @@ void solve()
 {
 }
 
-int main()
+signed main()
 {
     init();
     int t;
