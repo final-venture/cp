@@ -21,6 +21,28 @@ void init()
 
 void solve()
 {
+    int n;
+    cin >> n;
+    int a[n];
+    for (int i = 0; i < n; ++i)
+    {
+        cin >> a[i];
+    }
+    int res = 0;
+    for (int i = 0; i < n; ++i)
+    {
+        int score = a[i] + 1;
+        for (int j = i - 2; j >= 0; j -= 2)
+        {
+            ++score;
+        }
+        for (int j = i + 2; j < n; j += 2)
+        {
+            ++score;
+        }
+        res = max(score, res);
+    }
+    cout << res << '\n';
 }
 
 signed main()
