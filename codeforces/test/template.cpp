@@ -8,6 +8,7 @@ typedef long double ld;
 #define all(x) (x).begin(), (x).end()
 #define pb(x) push_back(x)
 #define EPS 1e-9
+#define int ll
 
 void init()
 {
@@ -19,87 +20,57 @@ void init()
     cin.tie(0);
 }
 
-class UF
-{
-public:
-    vector<int> rank;
-    vector<int> par;
-    UF(int sz)
-    {
-        rank = vector<int>(sz, 1);
-        par = vector<int>(sz);
-        for (int i = 0; i < sz; ++i)
-        {
-            par[i] = i;
-        }
-    }
-
-    int find(int x)
-    {
-        int p = par[x];
-        while (p != par[p])
-        {
-            par[p] = par[par[p]];
-            p = par[p];
-        }
-        return p;
-    }
-
-    void unionn(int x1, int x2)
-    {
-        int p1 = find(x1);
-        int p2 = find(x2);
-        if (rank[p1] > rank[p2])
-        {
-            par[p2] = par[p1];
-            rank[p1] += rank[p2];
-        }
-        else
-        {
-            par[p1] = par[p2];
-            rank[p2] += rank[p1];
-        }
-    }
-};
-
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
-    UF dsu = UF(n + 1);
-    vector<vector<int>> moves(n + 1, vector<int>(11, 0));
-    for (int i = 0; i < m; ++i)
+    int n, k;
+    cin >> n >> k;
+    string s;
+    cin >> s;
+    vector<int> acnt(n + 2, 0);
+    vector<int> bcnt(n + 2, 0);
+    for (int i = n - 1; i >= 0; --i)
     {
-        int a, d, k;
-        cin >> a >> d >> k;
-        moves[a][d] = max(moves[a][d], k);
+        bcnt[i] = bcnt[i + 1] + (s[i] == '1');
+        acnt[i] = acnt[i + 1] + (s[i] == '0');
     }
-    for (int i = 1; i < n + 1; ++i)
+    // for (int x : acnt) cout << x << ' ';
+    // cout << '\n';
+    // for (int x : bcnt) cout << x << ' ';
+    // cout << '\n';
+    // for subarray [i, j], cnt is cnt[i] - cnt[j]
+    int i = 0;
+    int last = 0;
+    int segs = 1;
+    int score_a = 0;
+    int score_b = 0;
+    while (i < n)
     {
-        for (int j = 1; j < 11; ++j)
+        if (s[i] == '1' && acnt[i] < bcnt[i])
+            ++i;
+        while (i < n && s[i] == '1' && acnt[i] >= bcnt[i])
         {
-            int movecnt = moves[i][j];
-            int pos = i;
-            while (movecnt && pos + j < n + 1)
-            {
-                --movecnt;
-                dsu.unionn(pos, pos + j);
-                moves[pos + j][j] = max(moves[pos + j][j], movecnt);
-                moves[pos][j] = 0;
-                pos += j;
-                movecnt = max(movecnt, moves[pos][j]);
-            }
+            ++i;
         }
-    }
-    int res = 0;
-    for (int i = 1; i < n + 1; ++i)
-    {
-        if (dsu.find(i) == i)
+        while (i < n && s[i] == '0')
         {
-            ++res;
+            ++i;
         }
+        score_a += (acnt[last] - acnt[i]) * (segs - 1);
+        score_b += (bcnt[last] - bcnt[i]) * (segs - 1);
+        int total_b = score_b + (bcnt[i] - bcnt[n]) * segs;
+        int total_a = score_a + (acnt[i] - acnt[n]) * segs;
+        // cout << total_a << '\n';
+        // cout << total_b << '\n';
+        int diff = total_b - total_a;
+        ++segs;
+        if (diff >= k)
+        {
+            cout << segs << '\n';
+            return;
+        }
+        last = i;
     }
-    cout << res << '\n';
+    cout << -1 << '\n';
 }
 
 signed main()
