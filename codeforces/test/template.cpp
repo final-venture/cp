@@ -21,6 +21,14 @@ void init()
 
 void solve()
 {
+    int n;
+    cin >> n;
+    vector<int> a(n + 1);
+    for (int i = 1; i < n + 1; ++i)
+    {
+        cin >> a[i];
+    }
+
 }
 
 signed main()
