@@ -21,11 +21,6 @@ void init()
 
 void solve()
 {
-    int n;
-    for (int i = 0; i < n; ++i)
-    {
-        int l, r;
-    }
 }
 
 signed main()
