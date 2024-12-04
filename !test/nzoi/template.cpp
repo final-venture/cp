@@ -21,23 +21,8 @@ void init()
     cin.tie(0);
 }
 
-//C y: create a new file with y bytes
-
-// D x: destroy file x
-
-// M x y: modify file x, after which it will be y bytes
-
-// O: optimise the disk layout
-
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
-    vector<int> a(n + 1);
-    for (int i = 1; i < n + 1; ++i)
-    {
-        
-    }
 }
 
 signed main()
