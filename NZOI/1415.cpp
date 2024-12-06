@@ -10,7 +10,7 @@ typedef long double ld;
 #define EPS 1e-9
 #define int ll
 
-#define LOCAL
+// #define LOCAL
 
 void init()
 {
