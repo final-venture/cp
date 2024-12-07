@@ -1,42 +1,38 @@
 class TreeAncestor {
-private:
-    int LOG;
-    vector<vector<int>> jump;
+    vector<vector<int>> up;
+    const int LOG = 16;
+// up[i][j] == 2^j-th ancestor of i
 public:
     TreeAncestor(int n, vector<int>& parent) {
-        LOG = 0;
-        while ((n >> LOG) > 0)
-        {
-            ++LOG;
-        }
-        jump = vector<vector<int>>(n, vector<int>(LOG));
-        // jump[i][j] refers to 2^j'th parent of node i
+        up = vector<vector<int>>(n, vector<int>(LOG, -1));
         for (int i = 0; i < n; ++i)
         {
-            jump[i][0] = parent[i];
+            up[i][0] = parent[i];
         }
-
         for (int j = 1; j < LOG; ++j)
         {
             for (int i = 0; i < n; ++i)
             {
-                if (jump[i][j - 1] == -1)
-                    jump[i][j] = -1;
+                if (up[i][j - 1] != -1)
+                {
+                    up[i][j] = up[up[i][j - 1]][j - 1];
+                }
                 else
-                    jump[i][j] = jump[jump[i][j - 1]][j - 1];
+                {
+                    up[i][j] = -1;
+                }
             }
         }
     }
 
     int getKthAncestor(int node, int k) {
-        for (int i = 0; i < LOG; ++i)
+        for (int i = LOG - 1; i >= 0; --i)
         {
-            if (node == -1)
-                return -1;
-            if ((1 << i) & k)
+            if (k & (1 << i))
             {
-                node = jump[node][i];
+                node = up[node][i];
             }
+            if (node == -1) return node;
         }
         return node;
     }
