@@ -9,9 +9,11 @@ typedef long double ld;
 #define pb(x) push_back(x)
 #define EPS 1e-9
 
+#define LOCAL
+
 void init()
 {
-#ifndef ONLINE_JUDGE
+#ifdef LOCAL
     freopen("in.txt", "r", stdin);
     freopen("out.txt", "w", stdout);
 #endif
@@ -26,9 +28,11 @@ void solve()
 signed main()
 {
     init();
+#ifdef LOCAL
     int t;
     cin >> t;
     while (t--)
+#endif
         solve();
     return 0;
 }
