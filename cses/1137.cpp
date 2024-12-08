@@ -108,14 +108,10 @@ void solve()
     dfs(1, -1);
     seg = vector<int>(4 * n + 10);
     build(1, 1, n);
-    for (int x : tour_in) cout << x << ' ';
-    cout << '\n';
-    for (int x : tour_out) cout << x << ' ';
-    cout << '\n';
-    for (int x : a) cout << x << ' ';
-    cout << '\n';
-    for (int x : arr) cout << x << ' ';
-    cout << '\n';
+    // for (int x : tour_in) cout << x << ' ';
+    // cout << '\n';
+    // for (int x : tour_out) cout << x << ' ';
+    // cout << '\n';
     while (q--)
     {
         int cmd, node;
