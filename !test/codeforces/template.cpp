@@ -21,6 +21,21 @@ void init()
 
 void solve()
 {
+    int n;
+    cin >> n;
+    vector<int> b(n + 1);
+    for (int i = 1; i < n + 1; ++i)
+    {
+        cin >> b[i];
+    }
+    vector<int> c(n + 1);
+    for (int i = 1; i < n + 1; ++i)
+    {
+        cin >> c[i];
+    }
+    int k;
+    cin >> k;
+
 }
 
 signed main()
