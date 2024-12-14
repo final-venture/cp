@@ -44,7 +44,7 @@ void solve()
             int cost = h[i - 1];
 
             int take = 0;
-            int notTake = dp[i - 1][j]; // do we need max here?
+            int notTake = dp[i - 1][j];
             if (j - cost >= 0)
             {
                 take = dp[i - 1][j - cost] + pgs;
