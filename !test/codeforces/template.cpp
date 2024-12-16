@@ -26,14 +26,12 @@ ll solve2(string& num, int n, int prevd, bool leading, bool tight)
     if (dp[n][prevd][leading][tight] != -1) return dp[n][prevd][leading][tight];
     int stdd = num[num.size() - n] - '0';
     int ub = tight ? stdd : 9;
-
     ll ret = 0;
     for (int d = 0; d <= ub; ++d)
     {
         if (d == prevd && !leading) continue;
         ret += solve2(num, n - 1, d, (leading && (d == 0)), (tight && (d == stdd)));
     }
-
     return dp[n][prevd][leading][tight] = ret;
 }
 
