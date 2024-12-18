@@ -19,36 +19,16 @@ void init()
     cin.tie(0);
 }
 
-int n, m;
-vector<vector<int>> adj;
-
-bool dfs(int node)
-{
-    for (int nei : adj[node])
-    {
-        dfs(nei);
-    }
-}
-
 void solve()
 {
-    cin >> n >> m;
-    adj.resize(n + 1);
-    for (int i = 0; i < m; ++i)
-    {
-        int a, b;
-        cin >> a >> b;
-        adj[a].pb(b);
-        adj[b].pb(a);
-    }
 }
 
 signed main()
 {
     init();
-    int t;
-    cin >> t;
-    while (t--)
-        solve();
+    // int t;
+    // cin >> t;
+    // while (t--)
+    solve();
     return 0;
 }
