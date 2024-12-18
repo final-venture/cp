@@ -19,6 +19,9 @@ void init()
     cin.tie(0);
 }
 
+int n, m;
+
+
 void solve()
 {
 }
