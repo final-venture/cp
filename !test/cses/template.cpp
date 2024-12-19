@@ -26,9 +26,9 @@ void solve()
 signed main()
 {
     init();
-    int t;
-    cin >> t;
-    while (t--)
-        solve();
+    // int t;
+    // cin >> t;
+    // while (t--)
+    solve();
     return 0;
 }

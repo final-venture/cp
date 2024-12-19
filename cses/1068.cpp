@@ -21,14 +21,29 @@ void init()
 
 void solve()
 {
+    ll n;
+    cin >> n;
+    vector<ll> ret;
+    while (n != 1)
+    {
+        ret.pb(n);
+        if (n & 1)
+        {
+            n *= 3;
+            ++n;
+        }
+        else n /= 2;
+    }
+    ret.pb(1);
+    for (ll x : ret) cout << x << ' ';
 }
 
 signed main()
 {
     init();
-    int t;
-    cin >> t;
-    while (t--)
-        solve();
+    // int t;
+    // cin >> t;
+    // while (t--)
+    solve();
     return 0;
 }
