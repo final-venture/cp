@@ -8,7 +8,6 @@ typedef long double ld;
 #define all(x) (x).begin(), (x).end()
 #define pb(x) push_back(x)
 #define EPS 1e-9
-#define int ll
 
 void init()
 {
@@ -22,14 +21,21 @@ void init()
 
 void solve()
 {
-    int n;
-    cin >> n;
-    for (int i = 1; i <= n; ++i)
+    string s;
+    cin >> s;
+    int n = s.size();
+    int l = 0, r = 0;
+    int maxx = 1;
+    while (r < n)
     {
-        int c = (i * i) * ((i * i) - 1) / 2;
-        int x = 4 * (i - 1) * (i - 2);
-        cout << c - x << '\n';
+        if (s[l] != s[r])
+        {
+            l = r;
+        }
+        maxx = max(maxx, r - l + 1);
+        ++r;
     }
+    cout << maxx << '\n';
 }
 
 signed main()

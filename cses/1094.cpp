@@ -24,12 +24,21 @@ void solve()
 {
     int n;
     cin >> n;
-    for (int i = 1; i <= n; ++i)
+    vector<int> a(n);
+    for (int i = 0; i < n; ++i)
     {
-        int c = (i * i) * ((i * i) - 1) / 2;
-        int x = 4 * (i - 1) * (i - 2);
-        cout << c - x << '\n';
+        cin >> a[i];
     }
+    int ret = 0;
+    for (int i = 1; i < n; ++i)
+    {
+        if (a[i - 1] > a[i])
+        {
+            ret += (a[i - 1] - a[i]);
+            a[i] = a[i - 1];
+        }
+    }
+    cout << ret << '\n';
 }
 
 signed main()
