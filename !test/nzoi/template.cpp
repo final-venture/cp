@@ -6,7 +6,6 @@ typedef unsigned long long ull;
 typedef long double ld;
 
 #define all(x) (x).begin(), (x).end()
-#define pb(x) push_back(x)
 #define EPS 1e-9
 
 #define LOCAL
