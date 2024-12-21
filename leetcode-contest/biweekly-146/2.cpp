@@ -1,4 +1,3 @@
-// ?????????
 #define MOD 1000000007
 #define ll long long
 class Solution {
@@ -13,7 +12,7 @@ public:
     ll dfs(ll r, ll c, int state)
     {
         if (r == m - 1 && c == n - 1 && state == k) return 1;
-        if (dp[r][c][state] != -1) return dp[r][c][state];
+        if (dp[r][c][state]) return dp[r][c][state];
 
         if (r < m - 1)
         {
@@ -33,9 +32,8 @@ public:
         this -> k = k;
         m = grid.size();
         n = grid[0].size();
-        dp.resize(m, vector<vector<ll>>(n, vector<ll>(LOG, -1)));
+        dp.resize(m, vector<vector<ll>>(n, vector<ll>(LOG, 0)));
         dfs(0, 0, grid[0][0]);
         return (int) dp[0][0][grid[0][0]];
     }
 };
-©leetcode
