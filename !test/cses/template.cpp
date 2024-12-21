@@ -18,44 +18,8 @@ void init()
     cin.tie(0);
 }
 
-int n, m;
-vector<vector<int>> adj;
-vector<int> time_in;
-int time = 1;
-vector<int> min_time;
-vector<int> st;
-vector<int> in_st;
-vector<vector<int>> sccs;
-
-void dfs(int node)
-{
-    if (time_in[node]) return;
-    st.push(node);
-    in_st[node] = 1;
-    time_in[node] = time;
-    min_time[node] = time;
-    ++time;
-    for (int nei : adj[node])
-    {
-        dfs(nei);
-        if (in_st[nei]) min_time[nei] = min(min_time[nei], min_time[node]);
-    }
-}
-
 void solve()
 {
-    cin >> n >> m;
-    adj.resize(n + 1);
-    time_in.resize(n + 1, -1);
-    min_time.resize(n + 1);
-    in_st.resize(n + 1, 0);
-
-    for (int i = 0; i < m; ++i)
-    {
-        int a, b;
-        cin >> a >> b;
-        adj[a].push_back(b);
-    }
 }
 
 signed main()
