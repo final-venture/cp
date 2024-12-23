@@ -9,7 +9,7 @@ vector<int> Z(vector<int>& a)
         {
             z[k] = min(r - k, z[k - l]);
         }
-        while (k + z[k] < nn && a[z[k]] == a[k +  z[k]])
+        while (k + z[k] < nn && a[z[k]] == a[k + z[k]])
         {
             ++z[k];
         }
