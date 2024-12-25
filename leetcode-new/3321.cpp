@@ -57,8 +57,8 @@ public:
 
             // now process added element
             // can be in 1, or in 2, or in none.
-            auto find1 = s1.find({n2c[nums[j]], nums[j]});
-            auto find2 = s2.find({n2c[nums[j]], nums[j]});
+            find1 = s1.find({n2c[nums[j]], nums[j]});
+            find2 = s2.find({n2c[nums[j]], nums[j]});
             if (find1 != s1.end())
             {
                 summ += (find1 -> second);
@@ -97,10 +97,10 @@ public:
                 {
                     summ -= (it1 -> first) * (it1 -> second);
                     summ += (it2 -> first) * (it2 -> second);
-                    s1.erase(it1);
-                    s2.erase(it2);
                     s1.insert({it2 -> first, it2 -> second});
                     s2.insert({it1 -> first, it1 -> second});
+                    s1.erase(it1);
+                    s2.erase(it2);
                 }
                 else break;
             }

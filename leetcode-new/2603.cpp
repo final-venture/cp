@@ -1,3 +1,50 @@
+// Tree Pruning
+class Solution {
+public:
+    int collectTheCoins(vector<int>& coins, vector<vector<int>>& edges) {
+        int n = coins.size();
+        vector<vector<int>> adj(n);
+        vector<int> deg(n);
+        for (auto& edge : edges)
+        {
+            int u = edge[0], v = edge[1];
+            adj[u].push_back(v); adj[v].push_back(u);
+        }
+
+        // we want to get rid of all leaf nodes, so they can step infinitely
+        vector<int> steps(n, 30005);
+        for (int i = 0; i < n; ++i)
+        {
+            if (coins[i]) steps[i] = 2;
+        }
+
+        queue<int> q;
+        for (int i = 0; i < n; ++i)
+        {
+            deg[i] = adj[i].size();
+            // we want to go from bottom up (leaves first), so:
+            if (deg[i] == 1) q.push(i);
+        }
+
+        while (!q.empty())
+        {
+            int node = q.front();
+            q.pop();
+            if (!steps[node]) continue;
+            --n;
+            for (int nei : adj[node])
+            {
+                steps[nei] = min(steps[nei], steps[node] - 1);
+                --deg[nei];
+                if (deg[nei] == 1) q.push(nei);
+            }
+        }
+        return 2 * max(0, n - 1);
+    }
+};
+
+
+// In-Out Tree DP - Educational, less efficient approach:
 // https://www.youtube.com/watch?v=wUmuRsTGQxs
 // Credit: codingMohan
 
