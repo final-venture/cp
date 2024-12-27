@@ -34,7 +34,6 @@ public:
         {
             par[p2] = par[p1];
             size[p1] += size[p2];
-            maxx = max(maxx, size[p1]);
         }
         else // (size[p2] > size[p1])
         {
