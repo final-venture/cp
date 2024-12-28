@@ -18,9 +18,9 @@ void init()
     ios::sync_with_stdio(0);
     cin.tie(0);
 }
- 
+
 vector<int> seg;
- 
+
 void build(int idx, int l, int r)
 {
     if (l == r)
@@ -33,7 +33,7 @@ void build(int idx, int l, int r)
     build(idx * 2 + 2, m + 1, r);
     seg[idx] = seg[idx * 2 + 1] + seg[idx * 2 + 2];
 }
- 
+
 int query(int idx, int l, int r, int ql, int qr)
 {
     if (ql <= l && r <= qr)
@@ -49,7 +49,7 @@ int query(int idx, int l, int r, int ql, int qr)
     int right = query(idx * 2 + 2, m + 1, r, ql, qr);
     return left + right;
 }
- 
+
 int update(int idx, int l, int r, int t, int v)
 {
     if (l == r && r == t)
