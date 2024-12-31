@@ -1,3 +1,5 @@
+// We need to use segtree of ordered_set rather than vector: https://codeforces.com/blog/entry/11080
+// so that update can work in O(log^2 n)
 #include <bits/stdc++.h>
 using namespace std;
 
