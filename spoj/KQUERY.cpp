@@ -1,3 +1,4 @@
+// BARELY accepted on non C++14. Use struct segtree for better time.
 #include <bits/stdc++.h>
 using namespace std;
 
