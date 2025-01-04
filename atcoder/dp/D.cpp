@@ -13,6 +13,7 @@ typedef tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics
 
 #define all(x) (x).begin(), (x).end()
 #define EPS 1e-9
+#define int ll
 
 void init()
 {
@@ -22,32 +23,36 @@ void init()
 #endif
     ios::sync_with_stdio(0);
     cin.tie(0);
-<<<<<<< HEAD
-}
-
-int dist(int )
-
-bool check(int x)
-{
-    int sum=0;
-    for(int d=0; d<=sqrt(x);d++) sum+=sqrt(x-d*d)+1;
-    return sum;
 }
 
 void solve()
 {
-    int p;
-    cin >> p;
-
+    int n, w;
+    cin >> n >> w;
+    vector<int> wts(n + 1);
+    vector<int> vals(n + 1);
+    for (int i = 1; i <= n; ++i)
+    {
+        cin >> wts[i] >> vals[i];
+    }
+    vector<vector<int>> dp(n + 1, vector<int>(w + 1, 0));
+    for (int i = 1; i <= n; ++i)
+    {
+        for (int j = 1; j <= w; ++j)
+        {
+            if (j - wts[i] >= 0)
+                dp[i][j] = dp[i - 1][j - wts[i]] + vals[i];
+            dp[i][j] = max(dp[i][j], dp[i - 1][j]);
+        }
+    }
+    ll ret = 0;
+    for (int j = 0; j <= w; ++j)
+    {
+        ret = max(ret, dp[n][j]);
+    }
+    cout << ret << '\n';
 }
 
-=======
-
-void solve()
-{
-}
-
->>>>>>> 584cf7ddf37e769d67211b275e16e09937775743
 signed main()
 {
     init();
