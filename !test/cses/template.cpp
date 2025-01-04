@@ -22,32 +22,12 @@ void init()
 #endif
     ios::sync_with_stdio(0);
     cin.tie(0);
-<<<<<<< HEAD
-}
-
-int dist(int )
-
-bool check(int x)
-{
-    int sum=0;
-    for(int d=0; d<=sqrt(x);d++) sum+=sqrt(x-d*d)+1;
-    return sum;
 }
 
 void solve()
 {
-    int p;
-    cin >> p;
-
 }
 
-=======
-
-void solve()
-{
-}
-
->>>>>>> 584cf7ddf37e769d67211b275e16e09937775743
 signed main()
 {
     init();
