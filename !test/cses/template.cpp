@@ -24,28 +24,8 @@ void init()
     cin.tie(0);
 }
 
-const int maxx = 250000005;
-
 void solve()
 {
-    int n, k;
-    cin >> n;
-    vector<int> a(n);
-    for (int i = 0; i < n; ++i)
-    {
-        cin >> a[i];
-    }
-
-    vector < bitset
-
-    int k;
-    cin >> k;
-    for (int i = 0; i < k; ++i)
-    {
-        int q;
-        cin >> q;
-
-    }
 }
 
 signed main()
