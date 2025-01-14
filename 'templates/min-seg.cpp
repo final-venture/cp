@@ -32,3 +32,16 @@ int query(int idx, int l, int r, int ql, int qr)
     int right = query(idx * 2 + 2, m + 1, r, ql, qr);
     return min(left, right);
 }
+
+void build(int idx, int l, int r)
+{
+    if (l == r)
+    {
+        seg[idx] = ? ;
+        return;
+    }
+    int m = l + (r - l) / 2;
+    build(idx * 2 + 1, l, m);
+    build(idx * 2 + 2, m + 1, r);
+    seg[idx] = merge(seg[idx * 2 + 1], seg[idx * 2 + 2]);
+}
