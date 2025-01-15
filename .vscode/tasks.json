@@ -9,6 +9,7 @@
             "command": "g++",
             "args": [
                 "-std=c++17",
+                "-DLOCAL",
                 "-Wall",
                 "-Wextra",
                 "-Wno-sign-compare",
