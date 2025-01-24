@@ -9,6 +9,11 @@ void solve()
 {
     int l, r;
     cin >> l >> r;
+    if (l == 1 && r == 1)
+    {
+        cout << 1 << '\n';
+        return;
+    }
     cout << r - l << '\n';
 }
 
