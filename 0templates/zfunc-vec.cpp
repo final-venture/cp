@@ -1,4 +1,4 @@
-vector<int> Z(vector<int>& a)
+vector<int> Z(vector<int> &a)
 {
     int nn = a.size();
     vector<int> z(nn);
