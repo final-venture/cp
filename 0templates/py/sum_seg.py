@@ -21,8 +21,8 @@ class SegmentTree:
         if r < t or t < l:
             return
         m = l + (r - l) // 2
-        self.updater(idx * 2 + 1, l, m, t, v)
-        self.updater(idx * 2 + 2, m + 1, r, t, v)
+        self.update(idx * 2 + 1, l, m, t, v)
+        self.update(idx * 2 + 2, m + 1, r, t, v)
         self.seg[idx] = self.seg[idx * 2 + 1] + self.seg[idx * 2 + 2]
 
     def query(self, idx, l, r, ql, qr):
