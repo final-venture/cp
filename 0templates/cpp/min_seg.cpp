@@ -43,5 +43,5 @@ void build(int idx, int l, int r)
     int m = l + (r - l) / 2;
     build(idx * 2 + 1, l, m);
     build(idx * 2 + 2, m + 1, r);
-    seg[idx] = merge(seg[idx * 2 + 1], seg[idx * 2 + 2]);
+    seg[idx] = min(seg[idx * 2 + 1], seg[idx * 2 + 2]);
 }
