@@ -38,8 +38,7 @@ public:
     int countMaxOrSubsets(vector<int> &nums)
     {
         int n = nums.size();
-        int ALL = 1 << n;
-        vector<int> dp(ALL + 1, 0);
+        vector<int> dp(1 << 17, 0);
         dp[0] = 1;
         int maxx = 0;
         for (int x : nums)
