@@ -1,14 +1,13 @@
-// O(kn) DP - AC
+// O(kn) DP - Tight AC
 class Solution
 {
 private:
     vector<int> nums;
-    int n;
-    int k;
-    vector<vector<vector<long long>>> dp;
+    int n, k, start_bal;
+    long long dp[1001][2001][3];
 
 public:
-    // 2 is even balance
+    // start_bal is even balance
     long long solve(int i, int picks, int balance)
     {
         if (picks > 2 * k)
@@ -17,15 +16,8 @@ public:
         }
         if (i >= n)
         {
-            if (balance == 2)
-            {
-                cout << i << ' ' << picks << ' ' << balance << '\n';
-                return 0;
-            }
-            else
-            {
-                return -1e18;
-            }
+            // cout << i << ' ' << picks << ' ' << balance << '\n';
+            return balance == start_bal ? 0 : -1e18;
         }
         if (dp[i][picks][balance] != -1)
         {
@@ -33,16 +25,22 @@ public:
         }
 
         long long pickAdd = -1e18, pickMinus = -1e18;
-        if (balance <= 3)
+        if (balance + 1 <= 2)
         {
             pickAdd = nums[i] + solve(i + 1, picks + 1, balance + 1);
         }
-        if (balance >= 1)
+        if (balance - 1 >= 0)
         {
             pickMinus = -nums[i] + solve(i + 1, picks + 1, balance - 1);
         }
-        long long pickNothing = solve(i + 1, picks, balance);
-        return dp[i][picks][balance] = max({pickAdd, pickMinus, pickNothing});
+        long long pickNothing = solve(i + 1, picks, balance); // PICK NOTHING
+        long long ret = pickNothing;
+
+        if (pickAdd > ret)
+            ret = pickAdd;
+        if (pickMinus > ret)
+            ret = pickMinus;
+        return dp[i][picks][balance] = ret;
     }
 
     long long maximumScore(vector<int> &nums, int k)
@@ -52,15 +50,23 @@ public:
             return 0;
         this->k = k;
         this->nums = nums;
-        dp.resize(n + 1, vector<vector<long long>>(2 * k + 1, vector<long long>(5, -1)));
-        // for (int i = 0; i < n; ++i) {
-        //     for (int j = 0; j < n; ++j) {
-        //         cout << rangeOf[i][j] << ' ';
-        //     }
-        //     cout << '\n';
-        // }
 
-        return solve(0, 0, 2);
+        long long ret = 0;
+        for (; start_bal < 3; ++start_bal)
+        {
+            for (int i = 0; i <= n; ++i)
+            {
+                for (int j = 0; j <= 2 * k; ++j)
+                {
+                    dp[i][j][0] = -1;
+                    dp[i][j][1] = -1;
+                    dp[i][j][2] = -1;
+                }
+            }
+            ret = max(ret, solve(0, 0, start_bal));
+        }
+
+        return ret;
     }
 };
 
