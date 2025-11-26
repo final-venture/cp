@@ -1,14 +1,17 @@
-class NumArray {
+// segment tree
+class NumArray
+{
 private:
     vector<int> nums;
     vector<int> seg;
     int n;
-public:
 
-    NumArray(vector<int>& nums) {
-        this -> n = nums.size();
+public:
+    NumArray(vector<int> &nums)
+    {
+        this->n = nums.size();
         seg.resize(4 * n + 4);
-        this -> nums = nums;
+        this->nums = nums;
         build(1, 0, n - 1);
     }
 
@@ -59,19 +62,68 @@ public:
         return seg[idx] = left + right;
     }
 
-    void update(int index, int val) {
+    void update(int index, int val)
+    {
         updatee(1, 0, n - 1, index, val);
     }
 
-    int sumRange(int left, int right) {
+    int sumRange(int left, int right)
+    {
         return queryy(1, 0, n - 1, left, right);
     }
-
 };
 
-/**
- * Your NumArray object will be instantiated and called as such:
- * NumArray* obj = new NumArray(nums);
- * obj->update(index,val);
- * int param_2 = obj->sumRange(left,right);
- */
+// fenwick tree
+class NumArray
+{
+private:
+    vector<int> nums;
+    vector<int> fenw;
+    int n;
+
+public:
+    NumArray(vector<int> &nums)
+    {
+        this->nums = nums;
+        this->n = nums.size();
+        fenw.resize(n + 1, 0);
+        for (int i = 1; i <= n; ++i)
+        {
+            fenw[i] += nums[i - 1];
+            int parent = i + (i & -i);
+            if (parent <= n)
+            {
+                fenw[parent] += fenw[i];
+            }
+        }
+    }
+
+    void update(int index, int val)
+    {
+        ++index;
+        int delta = val - nums[index - 1];
+        nums[index - 1] = val;
+        while (index <= n)
+        {
+            fenw[index] += delta;
+            index += (index & -index);
+        }
+    }
+
+    int sumRange(int left, int right)
+    {
+        ++right;
+        int rightSum = 0, leftSum = 0;
+        while (right > 0)
+        {
+            rightSum += fenw[right];
+            right -= (right & -right);
+        }
+        while (left > 0)
+        {
+            leftSum += fenw[left];
+            left -= (left & -left);
+        }
+        return rightSum - leftSum;
+    }
+};
