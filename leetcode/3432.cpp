@@ -1,14 +1,24 @@
-class Solution {
+class Solution
+{
 public:
-    int countPartitions(vector<int>& nums) {
-        int totalSum = accumulate(nums.begin(), nums.end(), 0);
-        int currSum = 0, ret = 0;
-        for (size_t i = 0; i < nums.size() - 1; ++i) {
-            currSum += nums[i];
-            if (abs(2*currSum - totalSum) % 2 == 0) {
-                ++ret;
-            }
-        }        
+    int countPartitions(vector<int> &nums)
+    {
+        int n = nums.size();
+        vector<int> pfx(n + 1, 0);
+        for (int i = 1; i <= n; ++i)
+        {
+            pfx[i] = pfx[i - 1] + nums[i - 1];
+        }
+        // for (auto x : pfx) cout << x << ' ';
+        int ret = 0;
+        for (int i = 1; i < n; ++i)
+        {
+            int cand = abs(pfx[i] - (pfx[n] - pfx[i]));
+            if (cand & 1)
+                continue;
+            ++ret;
+        }
         return ret;
     }
 };
+©leetcode
