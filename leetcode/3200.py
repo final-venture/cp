@@ -1,4 +1,3 @@
-# Own
 class Solution:
     def maxHeightOfTriangle(self, red: int, blue: int) -> int:
         tmpr, tmpb = red, blue

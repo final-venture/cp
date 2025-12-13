@@ -1,3 +1,4 @@
+# Model from Qiqi Impact
 class Solution:
     def maximumLength(self, nums: List[int], k: int) -> int:
         nums = [num%k for num in nums]

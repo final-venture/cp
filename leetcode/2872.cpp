@@ -1,5 +1,7 @@
+// Old solution
 #define ll long long
-class Solution {
+class Solution
+{
 private:
     vector<ll> seg;
     vector<vector<int>> adj;
@@ -8,6 +10,7 @@ private:
     vector<int> tour_vals;
     vector<int> values;
     int timer = 0;
+
 public:
     void tour(int node, int par)
     {
@@ -53,13 +56,18 @@ public:
         return left + right;
     }
 
-    int maxKDivisibleComponents(int n, vector<vector<int>>& edges, vector<int>& values, int k) {
-        adj.resize(n); seg.resize(4 * n); tour_in.resize(n); tour_out.resize(n);
-        this -> values = values;
-        for (auto& edge : edges)
+    int maxKDivisibleComponents(int n, vector<vector<int>> &edges, vector<int> &values, int k)
+    {
+        adj.resize(n);
+        seg.resize(4 * n);
+        tour_in.resize(n);
+        tour_out.resize(n);
+        this->values = values;
+        for (auto &edge : edges)
         {
             int u = edge[0], v = edge[1];
-            adj[u].push_back(v); adj[v].push_back(u);
+            adj[u].push_back(v);
+            adj[v].push_back(u);
         }
         tour_vals.resize(n);
         tour(0, -1);
@@ -68,8 +76,51 @@ public:
         for (int i = 0; i < n; ++i)
         {
             ll summ = query(0, 0, n - 1, tour_in[i], tour_out[i] - 1);
-            if (summ % k == 0) ++ret;
+            if (summ % k == 0)
+                ++ret;
         }
+        return ret;
+    }
+};
+
+// New solution
+class Solution
+{
+public:
+    vector<vector<int>> adj;
+    int ret = 0;
+
+    int dfs(int node, int par, vector<vector<int>> &edges, vector<int> &values, int k)
+    {
+        int sum = values[node];
+        for (int nei : adj[node])
+        {
+            if (nei == par)
+                continue;
+            int nextSum = dfs(nei, node, edges, values, k);
+            if (nextSum % k != 0)
+            {
+                sum += nextSum;
+                sum %= k;
+            }
+        }
+        if (sum % k == 0)
+        {
+            ++ret;
+        }
+        return sum;
+    }
+
+    int maxKDivisibleComponents(int n, vector<vector<int>> &edges, vector<int> &values, int k)
+    {
+        adj.resize(n);
+        for (auto &e : edges)
+        {
+            int u = e[0], v = e[1];
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+        dfs(0, -1, edges, values, k);
         return ret;
     }
 };

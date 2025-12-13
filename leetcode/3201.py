@@ -18,7 +18,7 @@ class Solution:
         
         return nums[1][0] + 1
 
-# Model from HTH sajj
+# Model from HTH
 class Solution:
     def maximumLength(self, nums: List[int]) -> int:
         count = 1
