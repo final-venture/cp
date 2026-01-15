@@ -27,45 +27,19 @@ public:
             }
         }
 
-        int ret = 0;
-        set<pair<int, int>> conflicts;
         unordered_map<int, int> n2conf;
+        int total_conf = 0, max_conf = 0;
 
         for (int i = 0; i < n; ++i)
         {
             if (forbidden[i] == nums[i])
             {
                 n2conf[nums[i]]++;
+                max_conf = max(max_conf, n2conf[nums[i]]);
+                total_conf++;
             }
         }
 
-        for (auto &[num, conf] : n2conf)
-        {
-            conflicts.insert({conf, num});
-        }
-
-        while (!conflicts.empty())
-        {
-            auto smallIt = conflicts.begin();
-            auto [smallCnt, smallNum] = *smallIt;
-            if (conflicts.size() == 1)
-            {
-                ret += smallIt->first;
-                conflicts.erase(smallIt);
-                break;
-            }
-            auto largeIt = conflicts.rbegin();
-            auto [largeCnt, largeNum] = *largeIt;
-            int toResolve = min(smallIt->first, largeIt->first);
-            ret += toResolve;
-            conflicts.erase(smallIt);
-            conflicts.erase(prev(conflicts.end()));
-            if (largeCnt > toResolve)
-            {
-                conflicts.insert({largeCnt - toResolve, largeNum});
-            }
-        }
-
-        return ret;
+        return max(max_conf, (total_conf + 1) / 2);
     }
 };
