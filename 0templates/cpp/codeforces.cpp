@@ -2,7 +2,7 @@
 
 using namespace std;
 
-#define ll long long
+#define int long long
 #define EPS 1e-9
 
 void solve()
