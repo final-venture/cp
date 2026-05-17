@@ -1,1 +1,12 @@
-# Repo for my competitive programming code
+# Competitive Programming Archive
+
+## Directories
+
+* **`!templates/`**: Contains boilerplate code for key algorithms.
+* **`/codeforces/`, `/leetcode/`, etc.**: Contains my submissions to various online judges and platforms.
+
+## Compilation Flags
+
+```bash
+g++ -Wall -Wextra -pedantic -std=c++17 -O2 -Wshadow -Wformat=2 -Wfloat-equal -Wconversion -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-qual -Wcast-align -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC -D_FORTIFY_SOURCE=2
+```
