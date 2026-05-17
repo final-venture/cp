@@ -1,3 +1,1 @@
-# cp
-
-Repo for Competitive Programming Code
+# Repo for my competitive programming code

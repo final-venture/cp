@@ -1,8 +1,8 @@
 // We need to use segtree of ordered_set rather than vector: https://codeforces.com/blog/entry/11080
 // so that update can work in O(log^2 n)
 
-// Ahh... Lovely
-// Ordered_set also TLEs...
+// Just need some small optimisations to pass
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
