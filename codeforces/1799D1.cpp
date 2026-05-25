@@ -60,12 +60,18 @@ void solve()
                 dp[i][j] = dp[i - 1][j] + hot[a[i]];
             }
         }
+        for (int j = 0; j <= k; ++j) {
+            if (j == a[i]) {
+                dp[i][a[i - 1]] = min(dp[i][a[i - 1]], dp[i - 1][j] + hot[a[i]]);
+            }
+            else {
+                dp[i][a[i - 1]] = min(dp[i][a[i - 1]], dp[i - 1][j] + cold[a[i]]);
+            }
+        }
         // run it on core 2, we swap core 1 and 2 so that the one running on core 1 is always a[i]
         // so our last run on core 2 will become a[i - 1]
         // and we can only get the hot value if previously a[i] was run as well on core 2
         // otherwise, we have to take the cold value
-        dp[i][a[i - 1]] = min(dp[i][a[i - 1]], dp[i - 1][a[i]] + hot[a[i]]);
-        dp[i][a[i]] = min(dp[i][a[i - 1]], dp[i - 1][0] + cold[a[i]]);
     }
 
     // for (int i = 1; i <= n; ++i) {
