@@ -32,13 +32,13 @@ void solve()
     // the program last run on CPU #1 is the program on index a[i - 1],
     // and the program ran on CPU #2 is a[j].
 
-    // for i in in the range [1..n]:
+    // for in in the range [1..n]:
     //  for j in the range [0..k]:
 
     // Two choices we can make:
     // 1. run program a[i] on CPU #1:
     //  dp[i][j] = dp[i - 1][j] + cold[a[i]] if a[i] != a[i - 1], else dp[i - 1][j] + hot[a[i]] if a[i] == a[i - 1].
-    // 2. run program a[i] on CPU #2:
+    // 2. run program a[i] on CPU #2 (swap them around):
     //  dp[i][a[i - 1]] = dp[i - 1][a[i]] + hot[a[i]]
     
     vector<vector<int>> dp(n + 1, vector<int>(k + 1));
@@ -60,13 +60,12 @@ void solve()
                 dp[i][j] = dp[i - 1][j] + hot[a[i]];
             }
         }
-        // run it on core 2.
-        // If we can run program a[i] Swap core 1 and 2 so that the one running on core 1 is always a[i]
+        // run it on core 2, we swap core 1 and 2 so that the one running on core 1 is always a[i]
         // so our last run on core 2 will become a[i - 1]
         // and we can only get the hot value if previously a[i] was run as well on core 2
         // otherwise, we have to take the cold value
         dp[i][a[i - 1]] = min(dp[i][a[i - 1]], dp[i - 1][a[i]] + hot[a[i]]);
-        dp[i][a[i]] = min(dp[i][a[i]], dp[i - 1][0] + cold[a[i]]);
+        dp[i][a[i]] = min(dp[i][a[i - 1]], dp[i - 1][0] + cold[a[i]]);
     }
 
     // for (int i = 1; i <= n; ++i) {
